@@ -1,0 +1,24 @@
+{
+  "name": "flight-aggregator",
+  "dockerComposeFile": [
+    "../docker-compose.yml" // chemin vers ton docker-compose
+  ],
+  "service": "server", // service où tu veux coder
+  "workspaceFolder": "/app", // correspond au volume ./server:/app
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": [
+    "npm install",
+    "go mod tidy",
+    "echo 'Setup terminé ✅'"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "ms-vscode.go-tools",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
