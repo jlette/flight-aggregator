@@ -7,6 +7,9 @@ import (
 	"net/http"
 )
 
+func Home(w http.ResponseWriter, req *http.Request){
+	io.WriteString(w, "Home Page\n")
+}
 func Healt(w http.ResponseWriter, req *http.Request){
 	w.WriteHeader(http.StatusCreated)
 	io.WriteString(w, "Serveur is good !\n")
@@ -44,7 +47,7 @@ func Flight(w http.ResponseWriter, req *http.Request) {
         return
     }
 
-    if res.StatusCode > 299 {
+    if res2.StatusCode > 299 {
         http.Error(w, fmt.Sprintf("API returned status %d: %s", res.StatusCode, body), res.StatusCode)
         return
     }
