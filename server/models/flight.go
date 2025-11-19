@@ -5,7 +5,7 @@ type Flight struct {
 
 	BookingId int `json: "bookingId"`
 	Status string `json: "status"`
-    PassengerName string `json: "passengerName"`
+    Passenger []Passenger `json: "passengerName"`
     FlightNumber string `json: "flightNumber"`
     DepartureAirport string `json: "departureAirport"`
     ArrivalAirport string `json: "arrivalAirport"`
@@ -15,4 +15,9 @@ type Flight struct {
     Currency string `json: "currency"`
     Id int `json: "id"`
 
+}
+
+type Passenger struct {
+    FirstName string `json: "firstName"`
+    LastName string `json: "lastName"`
 }
