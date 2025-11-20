@@ -5,5 +5,5 @@ import (
 )
 type FlightRepository interface {
 
-	TransformFlights() ([]models.Flight)
+	SetFlights() ([]models.Flight)
 }	
