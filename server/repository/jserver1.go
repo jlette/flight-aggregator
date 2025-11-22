@@ -3,7 +3,6 @@ package repository
 import (
 	"aggregator/models"
 	"encoding/json"
-	"log"
 	"strings"
 	"time"
 )
@@ -11,7 +10,7 @@ type FlightsDTO struct {
 	BookingId int `json:"bookingId"`
 	Status string `json:"status"`
     PassengerName string `json:"passengerName"`
-    FlightNumber string `json:"flightNumber"`
+    FlightNumber int `json:"flightNumber"`
     DepartureAirport string `json:"departureAirport"`
     ArrivalAirport string `json:"arrivalAirport"`
     DepartureTime time.Time `json:"departureTime"`
@@ -45,11 +44,11 @@ func (flightsDTO FlightsDTO) SetFlights() ([]models.Flight) {
 
 }
 
-func GetFlights(data []byte) []FlightsDTO {
-	var flightsDTO []FlightsDTO
-	err := json.Unmarshal(data, &flightsDTO)	
+func GetFlights(data []byte) ([]FlightsDTO, error) {
+	var flightsDTOs []FlightsDTO
+	err := json.Unmarshal(data, &flightsDTOs)	
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
-	return flightsDTO
+	return flightsDTOs, nil
 }

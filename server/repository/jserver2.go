@@ -10,8 +10,8 @@ type FlightsToBookDTO struct {
 	Reference int `json:"reference"`
 	Status string `json:"status"`
 	Travelers Travelers `json:"travelers"`
-    Segments []Segments `json:"segments"`
-    Total []Total `json:"total"`
+    Segments Segments `json:"segments"`
+    Total Total `json:"total"`
     Id int `json:"id"`
 }
 
@@ -21,7 +21,7 @@ type Travelers struct {
 }
 
 type Segments struct {
-	Fligtht []Flight `json:"flight"`
+	Flight Flight `json:"flight"`
 }
 
 type Flight struct {
@@ -48,17 +48,23 @@ func (flightsToBookDTO FlightsToBookDTO) SetFlights() ([]models.Flight) {
 				LastName:  flightsToBookDTO.Travelers.LastName,
 				
 		},
-		FlightNumber:    "",
-		DepartureAirport: "",
+		FlightNumber:    flightsToBookDTO.Segments.Flight.Number,
+		DepartureAirport: flightsToBookDTO.Segments.Flight.From,
+		ArrivalAirport:   flightsToBookDTO.Segments.Flight.To,
+		DepartureTime:   flightsToBookDTO.Segments.Flight.Depart,
+		ArrivalTime:     flightsToBookDTO.Segments.Flight.Arrive,
+		Price:          flightsToBookDTO.Total.Amount,
+		Currency:       flightsToBookDTO.Total.Currency,
+		Id:             flightsToBookDTO.Id,
 	}
 	return []models.Flight{flight}
 }	
 
 func GetFlightsToBook(data []byte) ([]FlightsToBookDTO, error) {
-	var flightsToBookDTO []FlightsToBookDTO
-	err := json.Unmarshal(data, &flightsToBookDTO);
+	var flightsToBookDTOs []FlightsToBookDTO
+	err := json.Unmarshal(data, &flightsToBookDTOs)
 	if err != nil {
 		return nil, err
 	}
-	return flightsToBookDTO, nil
+	return flightsToBookDTOs, nil
 }
