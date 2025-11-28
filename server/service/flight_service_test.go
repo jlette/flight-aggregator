@@ -33,8 +33,8 @@ func TestBuildResponse(t *testing.T) {
 		Reference: "B2",
 		Status:    "CONFIRMED",
 		Traveler: repository.Traveler{
-			FirstName: "Alice",
-			LastName:  "Smith",
+			FirstName: "Jean",
+			LastName:  "Neymar",
 		},
 		Segments: []repository.Segments{
 			{
@@ -68,8 +68,8 @@ func TestBuildResponse(t *testing.T) {
 	require.Equal(t, 300, resp.Flights[1].Price)
 
 	// Vérification mapping
-	require.Equal(t, "Alice", resp.Flights[0].Passenger.FirstName)
-	require.Equal(t, "John", resp.Flights[1].Passenger.FirstName)
+	require.Equal(t, "Jean", resp.Flights[0].Passenger.FirstName)
+	require.Equal(t, "Neymar", resp.Flights[1].Passenger.FirstName)
 }
 
 func TestBuildResponse_Default(t *testing.T) {
@@ -77,7 +77,7 @@ func TestBuildResponse_Default(t *testing.T) {
 	dto1 := repository.FlightsDTO{
 		BookingId:       "B1",
 		Status:          "CONFIRMED",
-		PassengerName:   "John Doe",
+		PassengerName:   "Jean Neymar",
 		FlightNumber:    "S1",
 		DepartureAirport: "CDG",
 		ArrivalAirport:   "LHR",
