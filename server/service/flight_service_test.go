@@ -1,7 +1,9 @@
-package service
+package service_test
 
 import (
 	"aggregator/repository"
+	"aggregator/service"
+
 	"testing"
 	"time"
 
@@ -9,7 +11,7 @@ import (
 )
 
 func TestBuildResponse(t *testing.T) {
-	s := NewFlightService()
+	
 
 	// Jserver1
 	dto1 := repository.FlightsDTO{
@@ -52,7 +54,7 @@ func TestBuildResponse(t *testing.T) {
 		Id: "2",
 	}
 
-	resp, err := s.BuildResponse(
+	resp, err := service.BuildResponse(
 		[]repository.FlightsDTO{dto1},
 		[]repository.FlightsToBookDTO{dto2},
 		"price",
@@ -71,7 +73,6 @@ func TestBuildResponse(t *testing.T) {
 }
 
 func TestBuildResponse_Default(t *testing.T) {
-	s := NewFlightService()
 
 	dto1 := repository.FlightsDTO{
 		BookingId:       "B1",
@@ -87,7 +88,7 @@ func TestBuildResponse_Default(t *testing.T) {
 		Id:               "1",
 	}
 
-	resp, err := s.BuildResponse(
+	resp, err := service.BuildResponse(
 		[]repository.FlightsDTO{dto1},
 		nil,
 		"",

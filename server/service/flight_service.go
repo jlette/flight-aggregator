@@ -6,18 +6,9 @@ import (
 	"aggregator/sort"
 )
 
-// FlightService représente le service chargé de construire la réponse contenant les vols
-type FlightService struct {}
-
-// NewFlightService retourne une nouvelle instance du service
-func NewFlightService() *FlightService {
-	return &FlightService{}
-}
-
-/*BuildResponse construit la réponse finale en fusionnant les données qui viennent
-des deux serveurs (j-server1 et j-server2), puis en triant les vols.*/
-
-func (s *FlightService) BuildResponse(
+// BuildResponse construit la réponse finale en fusionnant les données qui viennent
+// des deux serveurs (j-server1 et j-server2), puis en triant les vols.
+func BuildResponse(
 	flights1DTO []repository.FlightsDTO, // Vols récupérés depuis j-server1
 	flights2DTO []repository.FlightsToBookDTO, // Vols récupérés depuis j-server2
 	sortBy string, // Critère de tri demandé

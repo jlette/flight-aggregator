@@ -16,7 +16,6 @@ func Healt(w http.ResponseWriter, req *http.Request){
 	w.WriteHeader(http.StatusCreated)
 	io.WriteString(w, "Serveur is good !\n")
 }
-var flightService = service.NewFlightService()
 // fonction obselete je laisse ici car ça peux service pour plus tard 
 func Flight(w http.ResponseWriter, req *http.Request) {
 
@@ -114,7 +113,7 @@ func FlightSorted(w http.ResponseWriter, req *http.Request) {
 	sortBy := req.URL.Query().Get("sort") 
 
 	//Construit la réponse finale (fusion + tri)
-	response, err := flightService.BuildResponse(flightsDTOs, flightsToBookDTOs, sortBy)
+	response, err := service.BuildResponse(flightsDTOs, flightsToBookDTOs, sortBy)
 	if err != nil {
 		http.Error(w, "error building response: "+err.Error(), http.StatusInternalServerError)
 		return
